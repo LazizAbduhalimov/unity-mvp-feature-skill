@@ -94,6 +94,26 @@ Use the project signature from `Assets/Scripts/Meta/Interfaces/IServicePreloader
 Use this instead of `IStartable`.
 If `UniTask` is unavailable, follow the Dependency Rule and propose installation first.
 
+## Warmup Orchestration Rule
+
+`Warmup()` calls should be orchestrated by a composition-level initializer (for example: `GameInitializer`) that owns startup order across services.
+
+The feature may provide its own `IServicePreloader`, but startup sequencing should stay centralized in one initializer flow.
+
+Use this minimal pattern:
+
+```csharp
+public async UniTask StartAsync(CancellationToken ct = default)
+{
+    await _saveService.Warmup();
+    await _coreService.Warmup();
+    await _featureService.Warmup();
+    await _uiService.Warmup();
+}
+```
+
+Keep only the core ordered warmup idea in generated examples; avoid dumping large bootstrap implementations unless explicitly requested.
+
 ## Non-Integration Rule
 
 Do not connect the new feature immediately:
