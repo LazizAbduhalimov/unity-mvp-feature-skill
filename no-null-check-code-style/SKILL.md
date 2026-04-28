@@ -29,3 +29,13 @@ description: Apply a minimalistic C# style for Unity code with low ceremony and 
 2. Do not hide side effects in expression chains.
 3. Keep exceptions only where they provide clear value for debugging and are not duplicated elsewhere.
 
+## When Not To Use
+
+Do not use this style as-is in these cases:
+
+1. Safety-critical or compliance-heavy code where explicit defensive validation is mandatory.
+2. Public SDK/API layers where clear argument exceptions are part of the contract.
+3. Teams with a strict coding standard that requires braces and explicit null-checks everywhere.
+4. Bug-fix work where removing guards would make failures harder to diagnose in production.
+5. Auto-generated code or third-party vendor code that should not be stylistically rewritten.
+

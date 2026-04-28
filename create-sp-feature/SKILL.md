@@ -104,6 +104,16 @@ Do not connect the new feature immediately:
 
 Return a short "how to integrate later" note only.
 
+## When Not To Use
+
+Do not use this skill in these cases:
+
+1. The project uses ECS/DOTS as the primary architecture for this domain. In that case, this OOP MVP structure is not the right fit.
+2. The task is only a tiny hotfix in an existing feature and does not need new folder scaffolding.
+3. The team already has a strict alternative feature template that conflicts with this folder contract.
+4. The request requires immediate runtime wiring in composition roots/scenes as part of the same task.
+5. The feature is engine-level infrastructure (rendering, low-level networking, platform bootstrap) where MVP UI boundaries are irrelevant.
+
 ## Output Checklist
 
 Before finishing, verify:
